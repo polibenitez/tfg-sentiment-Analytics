@@ -1,0 +1,35 @@
+﻿extends layout
+
+block content
+  h3 #{message}
+  p En esta página introducimos ....
+    div.container
+
+      div.page-header
+        h1 Sentiment Analytics 
+
+      if errors
+        each error in errors
+          div.alert.alert-danger
+            span #{error.error}
+      if saved
+        div.alert.alert-success
+          span MOnitorización en marcha
+      form.login-form.form-horizontal(method='post',role='form' /*action=/testSentiment*/)
+        input(name='_method', type='hidden', value="PUT")
+
+        div.form-group
+          label.col-sm-4 Introduce que palabra calve o hashtag desea monitorizar
+          div.col-sm-8
+            input.form-control(
+              placeholder='palabra clave o hashtag',
+              required=true,
+              name='monitoringPhrase',
+              type='text',
+              value=givenName)
+        
+        div.form-group
+          div.col-sm-offset-4.col-sm-8
+            button.login.btn.btn-primary(type='submit') Enviar
+        div.pull-right
+          a(href="/") Return to home page
